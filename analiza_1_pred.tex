@@ -1,0 +1,161 @@
+\documentclass[a4paper]{article}
+
+%%%%%%%%%%%%%
+% Preambula %
+%%%%%%%%%%%%%
+
+% Kodiranje
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[slovene]{babel}
+
+\usepackage{textcase}
+
+\usepackage{lmodern}
+
+\usepackage{hyperref}
+
+% Matematika
+\usepackage{amsmath}  % razna okolja za poravnane enačbe ipd.
+\usepackage{amsthm}   % definicije okolij za izreke, definicije, ...
+\usepackage{amssymb}  % dodatni matematični simboli
+\usepackage{xypic}    % paket za diagrame
+
+% Definicija okolij izrek, posledica
+{\theoremstyle{theorem}
+  \newtheorem{izrek}{Izrek}[section]
+  \newtheorem{posledica}[izrek]{Posledica}
+}
+
+% Definicija okolja aksiom
+{\theoremstyle{definition}
+  \newtheorem{aksiom}{Aksiom}[section]
+}
+
+% Definicija okolij za definicije in vaje
+{\theoremstyle{definition}
+  \newtheorem{definicija}[izrek]{Definicija}
+  \newtheorem{vaja}[izrek]{Vaja}
+  \newtheorem{primer}[izrek]{Primer}
+}
+
+\title{Analiza 1. Predavanja}
+\author{Matija Sirk}
+
+% Definicije makrov
+\newcommand{\nn}{\mathbb{N}} % simbol za naravna števila
+\newcommand{\zz}{\mathbb{Z}} % simbol za cela števila
+\newcommand{\qq}{\mathbb{Q}} % simbol za racionalna števila
+\newcommand{\rr}{\mathbb{R}} % simbol za realna števila
+\newcommand{\cc}{\mathbb{C}} % simbol za kompleksna števila
+\newcommand{\konecdokaza}{$\blacksquare$} % črn (namesto prazen) kvadratek za konec dokaza
+
+%%%%%%%%%%%
+% Vsebina %
+%%%%%%%%%%%
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+  Skupni zapiski s predavanj Analize 1.
+
+  Lose all hope you who enter here.
+\end{abstract}
+
+
+
+\newpage
+\tableofcontents
+\newpage
+
+\section{Števila}
+
+\subsection{Naravna Števila}
+So števila s katerimi štejemo.
+Množica naravnih števil: $\nn = \{1, 2, 3, \dots\}$
+
+Vsako naravno število $n$ ima svojega naslednika $n^+$.
+$1$ je edini element $\nn$, ki ni naslednik nobenega $n \in \nn$.
+ 
+Opisana so s Peanovimi aksiomi. Naravna števila so množica, skupaj s pravilom, ki vsakemu naravnemu številu $n$ priredi njegovega naslednika $n^+$, ki je prav tako naravno število in velja:
+
+\begin{aksiom}
+   $\forall m, n \in \nn :  m^+ = n^+ \Leftrightarrow m = n$
+\end{aksiom}
+
+\begin{aksiom}
+  $Obstaja ~1 \in \nn, ki ~ni ~n^+ ~nobenega ~n \in \nn$
+\end{aksiom}
+
+\begin{aksiom}
+  $A \subset \nn ~in ~1 \in A ~in ~n \in A \Rightarrow n^+ \in A \Leftrightarrow A = \nn$
+\end{aksiom}
+
+Tretjemu Peanovemu aksiomu pravimo tudi aksiom popolne indukcije.
+Pazi, da je tukaj simbol $\subset$ simbol za podmnožico, ne za pravo podmnožico.
+
+\begin{primer}
+  Dokaži, da je za vsak $n \in \nn$ izraz $4^n - 3n + 8$ deljiv z $9$.
+
+  \begin{gather*}
+    n = 1: \\
+    4^1 - 3*1 + 8 = 9,~9 \mid 9~ \texttt{(Dokaz za bazo indukcije)}\\
+    \\
+    n \rightarrow n+1: \\
+    4^n - 3n + 8 = 9k,~k \in \zz \\
+    4^n = 9k + 3n - 8~ \texttt{(Indukcijska predpostavka)}\\
+    \\
+    4^{n+1} - 3(n+1) + 8 = 4*4^n - 3n + 5 = 4*(9k + 3n - 8) - 3n + 5 =\\
+    = 9*4k + 9n - 9*3 = 9(4k + n - 3), \\
+    9 \mid 9(4k + n - 3)~ \texttt{(Dokaz za indukcijski korak)}
+  \end{gather*}
+
+  Ker velja trditev za bazo indukcije in ker za vse $n \in \nn$ velja indukcijski korak, po načelu
+  popolne indukcije trditev velja $\forall n \in \nn$. \konecdokaza
+\end{primer}
+
+Naravna števila lahko seštevamo in množimo (aksiomatska definicija bo pri \emph{Logiki in Množicah}).
+Prav tako jih lahko uredimo po velikosti - $\nn$ je (linearno) urejena. Vsaka neprazna podmnožica $\nn$
+ima najmanši element in je urejena. Vsaka končna neprazna podmnožica $\nn$ ima največji element.
+
+\subsection{Cela Števila}
+
+V celih številih je smiselno definirano tudi odštevanje. $\zz = \{\dots, -3, -2, -1, 0, 1, 2, 3, \dots\}$
+
+Seštevanje in množenje se z $\nn$ razširita tudi na $\zz$. Tudi $\zz$ ima definirano urejenost na
+običajen način.
+
+Urejenost:
+\begin{gather*}
+  x - y = 0 \Rightarrow x = y \\
+  x - y > 0 \Rightarrow x > y
+\end{gather*}
+
+V splošnem deljenje ni definirano.
+
+\subsection{Racionalna Števila}
+
+Racionalna števila so kvocienti celih in naravnih števil. $\qq = \{\frac{m}{n};~ m \in \zz,~ n \in \nn\}$
+
+Racionalna števila lahko pogosto napišemo na več načinov - različni ulomki lahko zaznamujejo isto število (kvocient):
+$\frac{4}{3} = \frac{8}{6}$
+
+Enakost v racionalnih številih:
+$\frac{m}{n} = \frac{k}{l} \Leftrightarrow ml = kn$
+
+Racionalna števila lahko naivno skonstruiramo takole:
+
+\begin{equation}
+  \zz \times \nn = \{(m,n);~ m \in \zz,~ n \in \nn\}
+\end{equation}
+
+To množico razdelimo na ekvivalenčne razrede tako, da grupiramo skupaj v razred tiste ulomke, ki
+predstavljajo isti kvocient. Torej, urejena para $\frac{m}{n}$ in $\frac{k}{l}$ sta v istem razredu, če zanju velja:
+$\frac{m}{n} = \frac{k}{l} \Leftrightarrow ml = kn$.
+Racionalno število je razred urejenih parov in ga označimo z $\frac{m}{n}$ (oziroma z poljubnim drugim predstavnikom
+razreda).
+
+Računske operacije v $\qq$:
+\end{document}
